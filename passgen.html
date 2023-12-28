@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troll Physics Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav id='menu'>
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+    <li><a href='home.html'>Home</a></li>
+    <li><a class='dropdown-arrow' href='home.html'>Tools</a>
+      <ul class='sub-menus'>
+          <li><a href='calculator.html'>Calculator</a></li>
+          <li><a href='passgen.html'><b>Password Generator</b></a></li>
+        <li><a href='mp3player.html'>Mp3 Player</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Games</a>
+      <ul class='sub-menus'>
+        <li><a href='rps.html'>Rock Paper Scissors</a></li>
+        <li><a href='uno.html'>UNO</a></li>
+        <li><a href='cookie.html'>Cookie Clicker</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Tutorials</a>
+      <ul class='sub-menus'>
+        <li><a href='magcar.html'>Magnet Car</a></li>
+        <li><a href='flyoil.html'>Fly With Oil</a></li>
+        <li><a href='infmoney.html'>Infinite Money</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav><br>
+<hr width="98%">
+    <h1>PASSWORD GENERATOR</h1><br>
+    <button onclick="generateStars()">Generate Password</button>
+<br>
+  <div id="stars-container"></div>
+<br>
+  <div id="help-container"></div>
+
+  <script>
+    var clickCount = 0;
+
+    function generateStars() {
+      var numStars = Math.floor(Math.pow(Math.random(), 2) * 9) + 8; // Random number between 8 and 16
+
+      var starsContainer = document.getElementById("stars-container");
+      starsContainer.innerHTML = '<br>';
+
+      for (var i = 0; i < numStars; i++) {
+        var starSpan = document.createElement("span");
+        starSpan.innerHTML = '*';
+        starsContainer.appendChild(starSpan);
+      }
+
+      clickCount++;
+
+      if (clickCount === 3) {
+        showHelpButton();
+      }
+    }
+
+    function showHelpButton() {
+      var helpContainer = document.getElementById("help-container");
+
+      var helpButton = document.createElement("button");
+      helpButton.textContent = "Help?";
+      helpButton.onclick = function () {
+        toggleHelpTextbox();
+      };
+
+      helpContainer.innerHTML = '';
+      helpContainer.appendChild(helpButton);
+      var brs = document.createElement("br");
+      var helpTextbox = document.createElement("p");
+      var helpTextbox2 = document.createElement("p");
+      helpTextbox.id = "help-textbox";
+      helpTextbox2.id = "help-textbox2";
+      helpTextbox.textContent = "NOTE: To prevent security leaks we had to hide the";
+      helpTextbox2.textContent = "password alltogether. Good luck!";
+      helpContainer.appendChild(helpTextbox);
+      helpContainer.appendChild(helpTextbox2);
+    }
+
+    function toggleHelpTextbox() {
+      var helpTextbox = document.getElementById("help-textbox");
+      var helpTextbox2 = document.getElementById("help-textbox2");
+      helpTextbox.style.display = 'block'
+      helpTextbox2.style.display = 'block'
+    }
+  </script>
+    </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troll Physics Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav id='menu'>
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+    <li><a href='home.html'>Home</a></li>
+    <li><a class='dropdown-arrow' href='home.html'>Tools</a>
+      <ul class='sub-menus'>
+          <li><a href='calculator.html'>Calculator</a></li>
+          <li><a href='passgen.html'>Password Generator</a></li>
+          <li><a href='mp3player.html'>Mp3 Player</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Games</a>
+      <ul class='sub-menus'>
+          <li><a href='rps.html'><b>Rock Paper Scissors</b></a></li>
+        <li><a href='uno.html'>UNO</a></li>
+        <li><a href='cookie.html'>Cookie Clicker</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Tutorials</a>
+      <ul class='sub-menus'>
+        <li><a href='magcar.html'>Magnet Car</a></li>
+        <li><a href='flyoil.html'>Fly With Oil</a></li>
+        <li><a href='infmoney.html'>Infinite Money</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav><br>
+<hr width="98%">
+    <h1>ROCK PAPER SCISSORS</h1><br>
+    <label for="player-choice">Your move:</label>
+  <select id="player-choice">
+    <option value="rock">Rock</option>
+    <option value="paper">Paper</option>
+    <option value="scissors">Scissors</option>
+  </select>
+
+  <button onclick="playGame()">Play</button>
+
+  <p id="result-label">Result:</p>
+  <p id="score-label">Wins: <span id="win-count">0</span>, Losses: <span id="loss-count">0</span></p>
+
+  <script>
+    function playGame() {
+      var playerChoice = document.getElementById("player-choice").value;
+      var resultLabel = document.getElementById("result-label");
+      var winCountLabel = document.getElementById("win-count");
+      var lossCountLabel = document.getElementById("loss-count");
+
+      resultLabel.textContent = "You lose! Opponent chose " + getOpponentChoice(playerChoice) + ".";
+      updateScores(false);
+    }
+
+    function getOpponentChoice(playerChoice) {
+      // Always make the player lose intentionally
+      if (playerChoice === "rock") {
+        return "paper";
+      } else if (playerChoice === "paper") {
+        return "scissors";
+      } else if (playerChoice === "scissors") {
+        return "rock";
+      }
+
+      // Default case (should not happen)
+      return "rock";
+    }
+
+    function updateScores(playerWins) {
+      var winCountLabel = document.getElementById("win-count");
+      var lossCountLabel = document.getElementById("loss-count");
+
+      var currentWins = parseInt(winCountLabel.textContent);
+      var currentLosses = parseInt(lossCountLabel.textContent);
+
+      if (playerWins) {
+        winCountLabel.textContent = currentWins + 1;
+      } else {
+        lossCountLabel.textContent = currentLosses + 1;
+      }
+
+      // Update cookies with the new scores
+      document.cookie = "wins=" + winCountLabel.textContent;
+      document.cookie = "losses=" + lossCountLabel.textContent;
+    }
+
+    // Function to retrieve a cookie value by name
+    function getCookie(name) {
+      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      if (match) {
+        return match[2];
+      }
+      return null;
+    }
+
+    // Check if cookies exist and update scores accordingly
+    var storedWins = getCookie("wins");
+    var storedLosses = getCookie("losses");
+
+    if (storedWins !== null && storedLosses !== null) {
+      document.getElementById("win-count").textContent = storedWins;
+      document.getElementById("loss-count").textContent = storedLosses;
+    }
+  </script>
+    </body>
+</html>

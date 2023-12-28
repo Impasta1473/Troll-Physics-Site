@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troll Physics Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav id='menu'>
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+      <li><a href='home.html'><b>Home</b></a></li>
+    <li><a class='dropdown-arrow' href='home.html'>Tools</a>
+      <ul class='sub-menus'>
+          <li><a href='calculator.html'>Calculator</a></li>
+        <li><a href='passgen.html'>Password Generator</a></li>
+        <li><a href='mp3player.html'>Mp3 Player</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Games</a>
+      <ul class='sub-menus'>
+        <li><a href='rps.html'>Rock Paper Scissors</a></li>
+        <li><a href='uno.html'>UNO</a></li>
+        <li><a href='cookie.html'>Cookie Clicker</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Tutorials</a>
+      <ul class='sub-menus'>
+        <li><a href='magcar.html'>Magnet Car</a></li>
+        <li><a href='flyoil.html'>Fly With Oil</a></li>
+        <li><a href='infmoney.html'>Infinite Money</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav><br>
+<hr width="98%">
+    <h1>TROLL PHYSICS SITE</h1><br>
+  <p align="left">This totally useful website is based off the old 'Troll physics' rage <br> comics, that are completely accurate and cannot be rejected. period. <br> Also keep in mind this site will ALMOST NEVER be updated due to <br> business. but you may see what I'm up to below!</p><br>
+    <h3>Currently Doing:</h3>
+  <div id="status"></div>
+    <img src="cargif.gif" width="50%" height="auto" loop="infinite">
+<script>
+    function getCurrentStatus() {
+      var now = new Date();
+      var currentHour = now.getHours();
+      var statusElement = document.getElementById("status");
+
+      // Define activities for each time of day
+      var morningActivities = ["Eating drinks", "Drinking breakfast", "Driving in magnet car"];
+      var afternoonActivities = ["Buying money", "Trolling", "Inflating apples with helium", "Riding flashlight"];
+      var eveningActivities = ["Flying with oil in the rain", "Wishing for the ablity to wish for more wishes"];
+      var nightActivities = ["H", "Why u reading this", "Sleepwalking into Burger King", "akelfhwaeinufh", "Looking up at the planet Your Mother"];
+
+      // Determine the time of day and set the status accordingly
+      if (currentHour >= 6 && currentHour < 12) {
+        // Morning
+        statusElement.textContent = "Currently doing: " + getRandomActivity(morningActivities);
+      } else if (currentHour >= 12 && currentHour < 17) {
+        // Afternoon
+        statusElement.textContent = "Currently doing: " + getRandomActivity(afternoonActivities);
+      } else if (currentHour >= 17 && currentHour < 21) {
+        // Evening
+        statusElement.textContent = "Currently doing: " + getRandomActivity(eveningActivities);
+      } else {
+        // Night
+        statusElement.textContent = "Currently doing: " + getRandomActivity(nightActivities);
+      }
+    }
+
+    function getRandomActivity(activityArray) {
+      var randomIndex = Math.floor(Math.random() * activityArray.length);
+      return activityArray[randomIndex];
+    }
+
+    // Call the function when the page loads
+    getCurrentStatus();
+  </script>
+
+
+</body>
+</html>

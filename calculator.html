@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troll Physics Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav id='menu'>
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+    <li><a href='home.html'>Home</a></li>
+    <li><a class='dropdown-arrow' href='home.html'>Tools</a>
+      <ul class='sub-menus'>
+          <li><a href='calculator.html'><b>Calculator</b></a></li>
+        <li><a href='passgen.html'>Password Generator</a></li>
+        <li><a href='mp3player.html'>Mp3 Player</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Games</a>
+      <ul class='sub-menus'>
+        <li><a href='rps.html'>Rock Paper Scissors</a></li>
+        <li><a href='uno.html'>UNO</a></li>
+        <li><a href='cookie.html'>Cookie Clicker</a></li>
+      </ul>
+    </li>
+    <li><a class='dropdown-arrow' href='home.html'>Tutorials</a>
+      <ul class='sub-menus'>
+        <li><a href='magcar.html'>Magnet Car</a></li>
+        <li><a href='flyoil.html'>Fly With Oil</a></li>
+        <li><a href='infmoney.html'>Infinite Money</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav><br>
+<hr width="98%">
+    <h1>CALCULATOR</h1><br>
+  <label for="num1">First number:</label>
+  <input type="number" id="num1" step="any">
+<br>
+  <label for="operation">Operation:</label>
+  <select id="operation">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+    <option value="%">%</option>
+    <option value="^">^</option>
+    <option value="√">sqrt</option>
+  </select>
+<br>
+  <label for="num2">Second number:</label>
+  <input type="number" id="num2" step="any">
+<br>
+  <button onclick="calculate()">Go</button>
+
+  <p id="result"></p>
+
+  <script>
+  function calculate() {
+      var x = parseFloat(document.getElementById("num1").value);
+      var y = parseFloat(document.getElementById("num2").value);
+      var operation = document.getElementById("operation").value;
+      var result;
+
+      if (isNaN(x) || isNaN(y)) {
+        throw new Error("Ligma");
+      }
+
+      // Additional check to prevent division by zero or sqrt/powering by a negative number or 0
+      if ((operation === "/" || operation === "sqrt" || operation === "^") && (y <= 0)) {
+        throw new Error("Deez");
+      }
+
+      switch (operation) {
+        case "+":
+          result = (x * y) - y;
+          break;
+        case "-":
+          result = (x / y) + y;
+          break;
+        case "*":
+          result = x + Math.pow(y, 2);
+          break;
+        case "/":
+          result = x - (2 * Math.sqrt(y));
+          break;
+        case "%":
+          result = Math.round(Math.random() * 1000000);
+          break;
+        case "^":
+          result = Math.pow(y, y) + (Math.pow(x, 2));
+          break;
+        case "√":
+          result = (y / x) - y * Math.pow(x, 2);
+          break;
+        default:
+          throw new Error("LIGMA");
+      }
+
+      // Check if the combination is somehow correct and shift the result upward by one
+      if (result === (x * y) - y || result === (x / y) + y || result === x + Math.pow(y, 2) ||
+          result === x - (2 * Math.sqrt(y)) || result === Math.floor(Math.random() * (Math.floor(x) - Math.ceil(y) + 1)) + Math.ceil(y) ||
+          result === Math.pow(y, y) + (Math.pow(x, 2)) || result === (y / x) - y * Math.pow(x, 2)) {
+        result += 1;
+      }
+
+      if ((result.toString().length > 9 && operation != '%') || result >= 1000000000) {
+        result = "YOUR MOM";
+      }
+
+      document.getElementById("result").innerText = result;
+
+      // Play audio on failed calculation
+      var audio = new Audio('sounds/nope.mp3');
+      audio.play();
+
+      // Detect if there's a '69' at the beginning of either inpu
+  }
+</script>
+
+
+
+</body>
+</html>
